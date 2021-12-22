@@ -5,10 +5,11 @@ import edu.umd.cs.findbugs.annotations.Nullable;
 import lavalink.client.LavalinkUtil;
 import lavalink.client.io.Lavalink;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReconnectedEvent;
-import net.dv8tion.jda.api.events.channel.voice.VoiceChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.ChannelDeleteEvent;
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 import org.slf4j.Logger;
@@ -132,8 +133,10 @@ public class JdaLavalink extends Lavalink<JdaLink> implements EventListener {
             if (link == null) return;
 
             link.removeConnection();
-        } else if (event instanceof VoiceChannelDeleteEvent) {
-            VoiceChannelDeleteEvent e = (VoiceChannelDeleteEvent) event;
+        } else if (event instanceof ChannelDeleteEvent) {
+            ChannelDeleteEvent e = (ChannelDeleteEvent) event;
+            if (e.getChannelType() != ChannelType.VOICE && e.getChannelType() != ChannelType.STAGE)
+                return;
             JdaLink link = getLinksMap().get(e.getGuild().getId());
             if (link == null || !e.getChannel().getId().equals(link.getLastChannel())) return;
 

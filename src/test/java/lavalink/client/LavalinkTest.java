@@ -37,6 +37,7 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterAll;
@@ -49,6 +50,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -83,7 +85,7 @@ class LavalinkTest {
 
     @BeforeAll
     static void setUp() throws Exception {
-        JDABuilder jdaBuilder = new JDABuilder(AccountType.BOT)
+        JDABuilder jdaBuilder = JDABuilder.create(EnumSet.noneOf(GatewayIntent.class))
                 .setToken(getSystemProperty(PROPERTY_TOKEN));
 
         JDA selfId = jdaBuilder.build();
