@@ -54,6 +54,7 @@ public class LavalinkUtil {
         PLAYER_MANAGER.registerSourceManager(new TwitchStreamAudioSourceManager());
         PLAYER_MANAGER.registerSourceManager(new VimeoAudioSourceManager());
         PLAYER_MANAGER.registerSourceManager(new HttpAudioSourceManager());
+
     }
 
     /**
