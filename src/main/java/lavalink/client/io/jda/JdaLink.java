@@ -21,7 +21,7 @@ public class JdaLink extends Link {
         this.lavalink = lavalink;
     }
 
-    public void connect(@NonNull VoiceChannel voiceChannel) {
+    public void connect(@NonNull AudioChannel voiceChannel) {
         connect(voiceChannel, true);
     }
 
