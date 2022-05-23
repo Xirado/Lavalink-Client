@@ -124,7 +124,7 @@ public abstract class Lavalink<T extends Link> {
         }
 
         LavalinkSocket socket = new LavalinkSocket(name, this, serverUri, new Draft_6455(), headers);
-        socket.connect();
+        //socket.connect();
         nodes.add(socket);
         return socket;
     }
